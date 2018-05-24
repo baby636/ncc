@@ -2,11 +2,12 @@
 # these are set by config
 CC = g++
 DESTDIR ?= /usr
-LCFLAGS = -g -O2
+LCFLAGS = -g -O2 -Wno-write-strings
 BINDIR = ${DESTDIR}/bin
 MANDIR = ${DESTDIR}/share/man
 INCLUDEDIR = ${DESTDIR}/include
 NOGNU = /usr/include/nognu
+SHAREDIR = ${DESTDIR}/share/ncc
 
 #
 
@@ -18,14 +19,15 @@ tout: objdir/ncc nccnav/nccnav
 
 install: tout
 	cp objdir/ncc $(BINDIR)/ncc
-	cp scripts/nccstrip2.py $(BINDIR)/nccstrip2.py
+	mkdir $(SHAREDIR)
+	cp scripts/nccstrip2.py $(SHAREDIR)/nccstrip2.py
 	ln -sf $(BINDIR)/ncc $(BINDIR)/nccar
 	ln -sf $(BINDIR)/ncc $(BINDIR)/nccld
 	ln -sf $(BINDIR)/ncc $(BINDIR)/nccc++
 	ln -sf $(BINDIR)/ncc $(BINDIR)/nccg++
 	cp nccnav/nccnav $(BINDIR)/nccnav
 	ln -fs $(BINDIR)/nccnav $(BINDIR)/nccnavi
-	cp ncc.1 $(MANDIR)/man1
+	cp ncc.1 $(MANDIR)/man1/ncc.1
 	cp nccnav/nccnav.1 $(MANDIR)/man1
 	cp doc/nognu $(INCLUDEDIR)
 

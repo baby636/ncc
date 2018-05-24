@@ -155,7 +155,7 @@ below it all the functions called by it. Movement is possible
 with the UP/DOWN arrows.
 
 <enter> or RIGHT will expand a new pop-up for the current function.
-'q' or LEFT will close the current pop-up and activate the previous one.
+\fBq\fR or LEFT will close the current pop-up and activate the previous one.
 SPACE is available to view the source code.
 
 BACKSPACE will close all the popups and return to MODE 2.
@@ -174,14 +174,14 @@ Collecting all the .nccout files can be done with :
 
 .TP
 .B
-find . -name \*.nccout | xargs cat > kernel.map
+find . -name \\*.nccout | xargs cat > kernel.map
 
 .TP
 You can use pathremover to truncate long paths in `kernel.map'.
 
 .TP
 .B
-find . -name \*.nccout | xargs cat | pathremover /mnt/src/hacks/linux-2.4.10/ > kernel.map
+find . -name \\*.nccout | xargs cat | pathremover /mnt/src/hacks/linux-2.4.10/ > kernel.map
 
 .TP
 Then, that's viewed with:

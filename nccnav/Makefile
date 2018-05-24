@@ -1,12 +1,12 @@
 
 CC = g++
 LCFLAGS = -Wall -g
-CFLAGS = $(LCFLAGS) -c -g
+CFLAGS = $(LCFLAGS) -c -g -Wno-write-strings
 
 OBJDIR = ../objdir
 
 $(OBJDIR)/nccnav: nccnav.C $(OBJDIR)/dbstree.o $(OBJDIR)/inttree.o
-	$(CC) -g nccnav.C -I.. -lncurses -o nccnav $(OBJDIR)/dbstree.o $(OBJDIR)/inttree.o
+	$(CC) -g -Wno-write-strings nccnav.C -I.. -lncurses -o nccnav $(OBJDIR)/dbstree.o $(OBJDIR)/inttree.o
 
 $(OBJDIR)/dbstree.o: ../dbstree.[Ch]
 	$(CC) $(CFLAGS) ../dbstree.C -c

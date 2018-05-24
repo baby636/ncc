@@ -330,7 +330,7 @@ void do_replacements ()
 //
 
 struct file_chunk {
-	unsigned int start, end;
+	int start, end;
 } NoChunk = { ~0, ~0 };
 
 class lnnode : public intNode
