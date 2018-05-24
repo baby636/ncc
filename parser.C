@@ -1308,14 +1308,26 @@ static NormPtr do_statement (NormPtr p)
 	return p;
 }
 
+static NormPtr parse_declaration (NormPtr p);
+
 static NormPtr for_statement (NormPtr p)
 {
 	if (CODE [p++] != '(')
 		syntax_error (p, "for '('...");
+#ifdef NCC_ISOC99
+	if (is_dcl_start (CODE [p])) {
+		p = parse_declaration (p);
+	} else {
+		p = parse_expression (p);
+		if (CODE [p++] != ';')
+			syntax_error (p, "for (expression ';' ...");
+	}
+#else
 	p = parse_expression (p);
-	PSEUDOCODE ("REPEAT");
 	if (CODE [p++] != ';')
 		syntax_error (p, "for (expression ';' ...");
+#endif
+	PSEUDOCODE ("REPEAT");
 	p = parse_expression (p);
 	if (CODE [p++] != ';')
 		syntax_error (p, "for (expression; expression ';' ...");
