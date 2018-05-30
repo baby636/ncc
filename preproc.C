@@ -55,7 +55,7 @@ static void stripout (char *f)
 	if (report_stream != stdout) {
 		fclose (report_stream);
 		char tmp [1024];
-		sprintf (tmp, "nccstrip2.py %s" OUTPUT_EXT " %s" OUTPUT_EXT, f, f);
+		sprintf (tmp, "/usr/share/ncc/nccstrip2.py %s" OUTPUT_EXT " %s" OUTPUT_EXT, f, f);
 		system (tmp);
 	}
 	report_stream = stdout;
